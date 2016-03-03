@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+		<link rel="shortcut icon" href="images/icon.ico">
+		<title>금오공대 수강신청</title>
+		<link rel="stylesheet" href="themes/default/default.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="css/pop_up.css" />
+		<link rel="stylesheet" type="text/css" href="css/login.css" />
+		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css' />
+
+		<!-- login_form -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.nivo.slider.js"></script>
+		<script type="text/javascript">
+			$(window).load(function() {
+				$('#slider').nivoSlider();
+			});
+		</script>
+
+		<script>
+			// 팝업 레이어 Javascript 부분
+			function layer_open(el) {
+
+				var temp = $('#' + el);
+				var bg = temp.prev().hasClass('bg');
+				//dimmed 레이어를 감지하기 위한 boolean 변수
+
+				if (bg) {
+					$('.layer').fadeIn();
+					//'bg' 클래스가 존재하면 레이어가 나타나고 배경은 dimmed 된다.
+				} else {
+					temp.fadeIn();
+				}
+
+				// 화면의 중앙에 레이어를 띄운다.
+				if (temp.outerHeight() < $(document).height())
+					temp.css('margin-top', '-' + temp.outerHeight() / 2 + 'px');
+				else
+					temp.css('top', '0px');
+				if (temp.outerWidth() < $(document).width())
+					temp.css('margin-left', '-' + temp.outerWidth() / 2 + 'px');
+				else
+					temp.css('left', '0px');
+
+				temp.find('a.cbtn').click(function(e) {
+					if (bg) {
+						$('.layer').fadeOut();
+						//'bg' 클래스가 존재하면 레이어를 사라지게 한다.
+					} else {
+						temp.fadeOut();
+					}
+					e.preventDefault();
+				});
+
+				$('.layer .bg').click(function(e) {//배경을 클릭하면 레이어를 사라지게 하는 이벤트 핸들러
+					$('.layer').fadeOut();
+					e.preventDefault();
+				});
+			}
+
+			//로그인 확인
+			function login_check() {
+				if (!document.login.id.value) {
+					alert("ID를 입력하세요.");
+					document.login.id.focus();
+					return;
+				}
+				if (!document.login.pwd.value) {
+					alert("패스워드를 입력하세요.");
+					document.login.pwd.focus();
+					return;
+				}
+				document.login.submit();
+			}
+		</script>
+		<!-- login_form -->
+		<style type="text/css">
+			#form-2 h1 {
+				font-size: 15px;
+				font-weight: bold;
+				color: #bdb5aa;
+				padding-bottom: 8px;
+				border-bottom: 1px solid #EBE6E2;
+				text-shadow: 0 2px 0 rgba(255,255,255,0.8);
+				box-shadow: 0 1px 0 rgba(255,255,255,0.8);
+			}
+
+			#form-2 h1 .log-in, #form-2 h1 .sign-up {
+				display: inline-block;
+				text-transform: uppercase;
+			}
+
+			#form-2 h1 .log-in {
+				color: #6c6763;
+				padding-right: 2px;
+			}
+
+			#form-2 h1 .sign-up {
+				color: #34a5cf;
+				padding-left: 2px;
+			}
+
+			#form-2 .float {
+				width: 48%;
+				float: left;
+				padding-top: 5px border-top : 1px solid rgba(255,255,255,1);
+			}
+
+			#form-2 .float:last-of-type {
+				padding-left: 5px;
+			}
+
+			#form-2 label {
+				display: block;
+				padding: 0 0 5px 2px;
+				cursor: pointer;
+				text-transform: uppercase;
+				font-weight: 400;
+				text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+				font-size: 11px;
+			}
+
+			#form-2 label i {
+				margin-right: 5px; /* Gap between icon and text */
+				display: inline-block;
+				width: 10px;
+			}
+
+			#form-2 input[type=text], #form-2 input[type=password] {
+				font-family: 'Lato', Calibri, Arial, sans-serif;
+				font-size: 13px;
+				font-weight: 400;
+				display: block;
+				width: 100%;
+				padding: 5px;
+				margin-bottom: 5px;
+				border: 3px solid #ebe6e2;
+				border-radius: 5px;
+				-webkit-transition: all 0.3s ease-out;
+				-moz-transition: all 0.3s ease-out;
+				-ms-transition: all 0.3s ease-out;
+				-o-transition: all 0.3s ease-out;
+				transition: all 0.3s ease-out;
+			}
+
+			#form-2 input[type=text]:hover, #form-2 input[type=password]:hover {
+				border-color: #CCC;
+			}
+
+			#form-2 label:hover ~
+			input {
+				border-color: #CCC;
+			}
+
+			#form-2 input[type=text]:focus, #form-2 input[type=password]:focus {
+				border-color: #BBB;
+				outline: none; /* Remove Chrome's outline */
+			}
+
+			#form-2 .login {
+				/* Size and position */
+				width: 80px;
+				height: 38px;
+				float: right;
+				position: relative;
+				/* Styles */
+				box-shadow: inset 0 1px rgba(255,255,255,0.3);
+				border-radius: 3px;
+				cursor: pointer;
+				/* Font styles */
+				font-family: 'Lato', Calibri, Arial, sans-serif;
+				font-size: 14px;
+				line-height: 38px; /* Same as height */
+				text-align: center;
+				font-weight: bold;
+			}
+
+			#form-2 .login {
+				margin-right: 5%;
+				background: #34a5cf; /* Fallback */
+				background: -moz-linear-gradient(#34a5cf, #2a8ac4);
+				background: -ms-linear-gradient(#34a5cf, #2a8ac4);
+				background: -o-linear-gradient(#34a5cf, #2a8ac4);
+				background: -webkit-gradient(linear, 0 0, 0 100%, from(#34a5cf), to(#2a8ac4));
+				background: -webkit-linear-gradient(#34a5cf, #2a8ac4);
+				background: linear-gradient(#34a5cf, #2a8ac4);
+				border: 1px solid #2b8bc7;
+				color: #ffffff;
+				text-shadow: 0 -1px rgba(0,0,0,0.3);
+				text-decoration: none;
+			}
+
+			#form-2 input[type=submit]:hover, #form-2 .log-twitter:hover {
+				box-shadow: inset 0 1px rgba(255,255,255,0.3), inset 0 20px 40px rgba(255,255,255,0.15);
+			}
+
+			#form-2 input[type=submit]:active, #form-2 .log-twitter:active {
+				top: 1px;
+			}
+
+			/* Fallback fro broswers that don't support box shadows */
+			#no-boxshadow #form-2 input[type=submit]:hover {
+				background: #ffb347;
+			}
+
+			#no-boxshadow .form-2 .log-twitter:hover {
+				background: #2a8ac4;
+			}
+
+			#form-2 p:last-of-type {
+				clear: both;
+			}
+
+			#form-2 .opt {
+				text-align: right;
+				margin-right: 3px;
+			}
+
+			#form-2 label[for=showPassword] {
+				display: inline-block;
+				margin-bottom: 10px;
+				font-size: 11px;
+				font-weight: 400;
+				text-transform: capitalize;
+			}
+
+			#form-2 input[type=checkbox] {
+				vertical-align: middle;
+				margin: -1px 5px 0 1px;
+			}
+		</style>
+	</head>
+	<body>
+		
+				<div>
+					<a id="logo">kitime</a></div>
+		<div class="codrops-top" style="padding-top: 0px; font-family: 'Lato', Calibri, Arial, sans-serif; font-size: 13px;
+				font-weight: 400;">
+			
+			<a href="http://www.kumoh.ac.kr/main.do"> &laquo; 금오공대 홈페이지 바로가기</a>
+
+			<span class="right"> <a href="http://tympanus.net/codrops/2012/06/05/fullscreen-slit-slider-with-jquery-and-css3/" class="join"
+				onclick="layer_open('login_form');return false;"><strong>Login</strong> </a> </span>
+
+		</div>
+
+		<div id="wrapper">
+
+			<div class="slider-wrapper theme-default" style="padding-top: 20px;">
+				<div id="slider" class="nivoSlider" >
+					<img src="images/1.jpg" data-thumb="images/1.jpg" alt="" />
+					<img src="images/2.jpg" data-thumb="images/2.jpg" alt=""/>
+					<img src="images/3.jpg" data-thumb="images/3.jpg" alt="" data-transition="slideInLeft"/>
+					
+				</div>
+				<p align="center" style="padding-bottom: 10px;"><STRONG class="hl"><font size="3" color="white"> 본 사이트는 1366x768 이상의 해상도 모니터에 최적화되어 설계되었습니다. </font></p>
+
+			</div>
+
+		</div>
+
+		<div id="form-2">
+			<form name="login" action="login_proc.php"  method="post" >
+				<div class="layer">
+					<div class="bg"></div>
+					<div id="login_form" class="pop-layer">
+						<div class="pop-container">
+							<div class="pop-conts">
+								<!--content //-->
+
+								<section class="main">
+
+									<h1><span class="log-in">Log</span><span class="sign-up"> in</span></h1>
+
+									<p class="float">
+										<label>UserID</label>
+										<input type="text" name="id" placeholder="Userid">
+
+									</p>
+
+									<p class="float">
+										<label>Password</label>
+										<input type="password" name="pwd" placeholder="Password" class="showpassword" onKeyDown="if(event.keyCode==13)login_check();">
+									</p>
+
+									<p class="clearfix" >
+										<a href="javascript:login_check()" class="login"  >Log in</a>
+									</p>
+									
+									<p>
+										<label>* id/password는 원스톱서비스와 동일합니다.</label>
+									</p>
+								</section>
+								<!--// content-->
+							</div>
+						</div>
+					</div>
+				</div>
+										</form>
+		</div>
+	</body>
+</html>
